@@ -23,9 +23,28 @@ function getLatestHeadline(data) {
     return Titles[0];
 };
 
-setInterval(() => {
+// setInterval(() => {
+//     getFromCNN((data) => {
+//         const latestHeadline = getLatestHeadline(data);
+//         if (latestHeadline.title.includes(string)) console.log('Coronavirus article released!')
+//     })
+// }, 2 * 1000);
+
+function compare() {
     getFromCNN((data) => {
-        const latestHeadline = getLatestHeadline(data);
-        if (latestHeadline.title.includes(string)) console.log('Coronavirus article released!')
+        let previousHeadline = getLatestHeadline(data)
+        setTimeout(() => {
+            getFromCNN((data) => {
+                let newestHeadline = getLatestHeadline(data);
+                if (newestHeadline.title !== previousHeadline.title) {
+                    console.log('New article released');
+                    if (newestHeadline.title.includes(string)) {
+                        console.log("Coronavirus related article. Sending email.")
+                    }
+                }
+            })
+        }, 2 * 1000)
     })
-}, 5 * 1000);
+};
+
+setInterval(compare, 10 * 1000);
