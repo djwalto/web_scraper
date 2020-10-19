@@ -3,6 +3,7 @@ const nodemailer = require('nodemailer');
 const fetch = require('node-fetch');
 const cnn = 'https://lite.cnn.com/en';
 const string = 'coronavirus';
+const sendMail = require("./MailSender");
 
 function getFromCNN(resp) {
     fetch(cnn)
@@ -46,5 +47,7 @@ function compare() {
         }, 2 * 1000)
     })
 };
+
+sendMail('Hello world', "Samsung Watch", "facebook.com/", "");
 
 setInterval(compare, 10 * 1000);
