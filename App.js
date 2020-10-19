@@ -2,7 +2,7 @@ const cheerio = require('cheerio');
 const nodemailer = require('nodemailer');
 const fetch = require('node-fetch');
 const cnn = 'https://lite.cnn.com/en';
-const string = 'Trump';
+const string = 'coronavirus';
 
 function getFromCNN(resp) {
     fetch(cnn)
@@ -23,6 +23,9 @@ function getLatestHeadline(data) {
     return Titles[0];
 };
 
-getFromCNN((data) => {
-    console.log(getLatestHeadline(data))
-});
+setInterval(() => {
+    getFromCNN((data) => {
+        const latestHeadline = getLatestHeadline(data);
+        if (latestHeadline.title.includes(string)) console.log('Coronavirus article released!')
+    })
+}, 5 * 1000);
