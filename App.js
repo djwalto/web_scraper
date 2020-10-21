@@ -24,12 +24,6 @@ function getLatestHeadline(data) {
     return Titles[0];
 };
 
-// setInterval(() => {
-//     getFromCNN((data) => {
-//         const latestHeadline = getLatestHeadline(data);
-//         if (latestHeadline.title.includes(string)) console.log('Coronavirus article released!')
-//     })
-// }, 2 * 1000);
 
 function compare() {
     getFromCNN((data) => {
