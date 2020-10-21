@@ -1,17 +1,20 @@
-const nodemailer = require('nodemailer');
-const dotenv = require('dotenv').config();
+require('dotenv').config();
+const mailer = require('nodemailer');
 
-
-var transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 465,
-    secure: true, // true for 465, false for other ports
+const transporter = mailer.createTransport({
+    service: 'gmail',
     auth: {
-        user: process.env.USER,
-        pass: process.env.PASS
-    },
-    tls: {
-        rejectUnauthorized: false
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
+    }
+})
+
+// verify connection configuration
+transporter.verify(function (error, success) {
+    if (error) {
+        console.log(error);
+    } else {
+        console.log("Server is ready to take our messages");
     }
 });
 
