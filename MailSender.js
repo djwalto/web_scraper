@@ -19,7 +19,7 @@ transporter.verify(function (error, success) {
 });
 
 var mailOptions = {
-    from: process.env.USER,
+    from: process.env.EMAIL_USER,
     to: 'davidjwalton2020@gmail.com',
     subject: '',
     text: ''

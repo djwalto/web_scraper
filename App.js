@@ -1,5 +1,5 @@
 const cheerio = require('cheerio');
-const nodemailer = require('nodemailer');
+
 const fetch = require('node-fetch');
 const cnn = 'https://lite.cnn.com/en';
 const string = 'coronavirus';
