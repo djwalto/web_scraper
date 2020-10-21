@@ -23,17 +23,19 @@ function getLatestTitle(data) {
         .children('h3')
         .children('a')
         .each(function (i, el) {
-            VideoTitles.push({ title: $(el).text(), link: $(el).attr('href') })
+            VideoTitles.push({ title: $(el).text(), link: $(el).attr('href') });
         })
-    return VideoTitles[0]
+    return VideoTitles[0];
 }
 
 
 function compare() {
     let previousTitle, latestTitle;
+
     fetchFromYouTube((data) => {
         previousTitle = getLatestTitle(data);
     }).then(() => {
+
         fetchFromYouTube((data) => {
             latestTitle = getLatestTitle(data);
             if (latestTitle.title !== previousTitle.title) {
@@ -47,8 +49,12 @@ function compare() {
         .then(() => {
             compare();
         })
+
 }
+
+compare();
 
 sendMail('Trick Shot Video Found', "Basketball player", "www.youtube.com/", "https://www.youtube.com");
 
-compare();
+// setInterval(compare, 10 * 1000);
+
